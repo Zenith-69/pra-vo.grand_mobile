@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Правительство Grand Mobile | Сервер 20</title>
-    <meta name="description" content="Официальное правительство Grand Mobile на Сервере 20. Присоединяйтесь к нашей команде!">
+    <meta name="description" content="Официальное правительство Grand Mobile на Сервере 20. 49 членов правительства. Присоединяйтесь к нашей команде!">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -39,7 +39,7 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -148,19 +148,23 @@
         /* Карточки членов */
         .members-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
             margin-top: 50px;
         }
 
         .member-card {
             background: rgba(255, 255, 255, 0.05);
             border-radius: var(--border-radius);
-            padding: 30px;
+            padding: 25px;
             transition: all 0.3s ease;
             border: 1px solid rgba(212, 175, 55, 0.1);
             opacity: 0;
             transform: translateY(20px);
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .member-card.visible {
@@ -169,7 +173,7 @@
         }
 
         .member-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-8px);
             box-shadow: var(--shadow);
             border-color: var(--accent-gold);
             background: rgba(255, 255, 255, 0.08);
@@ -177,30 +181,31 @@
 
         .member-header {
             text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .member-status {
-            font-size: 1.5rem;
             margin-bottom: 15px;
         }
 
+        .member-status {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #4CAF50;
+        }
+
         .member-photo-placeholder {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 20px;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
             background: linear-gradient(45deg, var(--primary-blue), var(--primary-dark));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: var(--accent-gold);
-            border: 3px solid var(--accent-gold);
+            border: 2px solid var(--accent-gold);
         }
 
         .member-name {
-            font-size: 1.8rem;
+            font-size: 1.4rem;
             font-weight: 600;
             margin-bottom: 5px;
             color: var(--text-light);
@@ -208,35 +213,42 @@
 
         .member-position {
             color: var(--accent-gold);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1px;
+            font-weight: 500;
         }
 
         .member-quote {
             position: relative;
-            padding: 20px;
+            padding: 15px;
             background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
+            border-radius: 8px;
             font-style: italic;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .quote-icon {
             color: var(--accent-gold);
             opacity: 0.5;
-            font-size: 1rem;
+            font-size: 0.8rem;
         }
 
         .quote-icon:first-child {
             position: absolute;
-            top: 10px;
-            left: 10px;
+            top: 8px;
+            left: 8px;
         }
 
         .quote-icon:last-child {
             position: absolute;
-            bottom: 10px;
-            right: 10px;
+            bottom: 8px;
+            right: 8px;
         }
 
         /* Особенности */
@@ -266,7 +278,7 @@
             transform: translateY(0);
         }
 
-        .feature-card:hover {
+.feature-card:hover {
             transform: translateY(-5px);
             background: rgba(212, 175, 55, 0.05);
         }
@@ -277,7 +289,7 @@
             margin-bottom: 20px;
         }
 
-.feature-card h3 {
+        .feature-card h3 {
             font-size: 1.5rem;
             margin-bottom: 15px;
             color: var(--text-light);
@@ -377,11 +389,41 @@
             }
         }
 
-        .animate {
-            animation: fadeInUp 0.8s ease forwards;
+        /* Пагинация для членов правительства */
+        .pagination-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 40px;
+            flex-wrap: wrap;
         }
 
-        /* Адаптивность */
+        .page-btn {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--accent-gold);
+            border: 1px solid var(--accent-gold);
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .page-btn:hover:not(:disabled) {
+            background: rgba(212, 175, 55, 0.2);
+        }
+
+        .page-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .page-info {
+            color: var(--text-gray);
+            font-size: 1rem;
+        }
+
+/* Адаптивность */
         @media (max-width: 768px) {
             .hero-title {
                 font-size: 2.5rem;
@@ -404,7 +446,8 @@
             }
             
             .members-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 15px;
             }
             
             .footer-content {
@@ -425,9 +468,28 @@
             .features-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .member-card {
+                padding: 20px;
+                min-height: 250px;
+            }
+            
+            .member-name {
+                font-size: 1.2rem;
+            }
         }
 
-</style>
+        @media (max-width: 480px) {
+            .members-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pagination-controls {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Герой секция -->
@@ -437,17 +499,17 @@
                 <h1 class="hero-title">ПРАВИТЕЛЬСТВО GRAND MOBILE</h1>
                 <p class="hero-subtitle">Стройте будущее вместе с нами на <span class="server-highlight">Сервере 20</span></p>
                 <p class="hero-description">
-                    Мы создаем сильное, справедливое и процветающее государство, 
+                    Самое мощное правительство из 49 опытных лидеров. Мы создаем сильное, справедливое и процветающее государство, 
                     где каждый игрок может реализовать свой потенциал. Присоединяйтесь 
-                    к команде лидеров, которые меняют мир Grand Mobile к лучшему.
+                    к команде профессионалов, которые меняют мир Grand Mobile к лучшему.
                 </p>
                 <div class="stats">
                     <div class="stat-item">
-                        <span class="stat-number">40%</span>
+                        <span id="approvalRate" class="stat-number">69%</span>
                         <span class="stat-label">Одобрение граждан</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number">7</span>
+                        <span class="stat-number">49</span>
                         <span class="stat-label">Членов правительства</span>
                     </div>
                     <div class="stat-item">
@@ -463,10 +525,28 @@
     <section class="government-section">
         <div class="container">
             <h2 class="section-title">НАША КОМАНДА</h2>
-            <p class="section-subtitle">Лидеры, которые ведут наш регион к процветанию</p>
+            <p class="section-subtitle">49 лидеров, которые ведут наш регион к процветанию</p>
             
+            <!-- Старший состав -->
+            <div class="senior-members">
+                <!-- Будет заполнено JavaScript -->
+            </div>
+            
+            <!-- Все члены с пагинацией -->
             <div class="members-grid" id="membersGrid">
                 <!-- Данные загружаются через JavaScript -->
+            </div>
+            
+            <!-- Пагинация -->
+            <div class="pagination-controls">
+                <button id="prevPage" class="page-btn" disabled>
+
+<i class="fas fa-chevron-left"></i> Назад
+                </button>
+                <span class="page-info" id="pageInfo">Страница 1 из 4</span>
+                <button id="nextPage" class="page-btn">
+                    Вперед <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
         </div>
     </section>
@@ -481,28 +561,28 @@
                         <i class="fas fa-shield-alt"></i>
                     </div>
                     <h3>Безопасность и Порядок</h3>
-                    <p>Мы гарантируем защиту прав каждого гражданина и поддерживаем законность на всех территориях.</p>
+                    <p>49 опытных лидеров гарантируют защиту прав каждого гражданина и поддерживают законность.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-chart-line"></i>
                     </div>
                     <h3>Экономический Рост</h3>
-                    <p>Стимулируем развитие бизнеса, создаем рабочие места и поддерживаем предпринимательство.</p>
+                    <p>Самый сильный экономический отдел среди всех серверов. Стабильность и развитие.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-users"></i>
                     </div>
-                    <h3>Сообщество и Поддержка</h3>
-                    <p>Активное взаимодействие с гражданами, прозрачность решений и быстрое решение проблем.</p>
+                    <h3>Сильное Сообщество</h3>
+                    <p>Крупнейшее правительство с 69% одобрением граждан. Мы слушаем и помогаем каждому.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-gem"></i>
                     </div>
-                    <h3>Эксклюзивные Возможности</h3>
-                    <p>Члены нашего правительства получают доступ к уникальным ивентам, ресурсам и привилегиям.</p>
+                    <h3>Эксклюзивные Привилегии</h3>
+                    <p>Только у нас: уникальные ивенты, защита территорий и специальные бонусы для членов.</p>
                 </div>
             </div>
         </div>
@@ -513,9 +593,8 @@
         <div class="container">
             <h2 class="cta-title">ГОТОВЫ СТАТЬ ЧАСТЬЮ ИСТОРИИ?</h2>
             <p class="cta-description">
-                Присоединяйтесь к самому прогрессивному правительству на Сервере 20.
-
-Вместе мы построим государство, которое станет примером для всего Grand Mobile!
+                Присоединяйтесь к самому большому и прогрессивному правительству на Сервере 20. 
+                49 лидеров, 69% одобрение, 100% результат. Вместе мы построим государство мечты!
             </p>
             <button id="playButton" class="play-button">
                 <i class="fas fa-gamepad"></i>
@@ -534,10 +613,10 @@
             <div class="footer-content">
                 <div class="footer-logo">
                     <h3>GRAND MOBILE GOVERNMENT</h3>
-                    <p>Сервер 20 | Официальное правительство</p>
+                    <p>Сервер 20 | 49 членов правительства | 69% одобрение</p>
                 </div>
                 <div class="footer-links">
-                    <p>© 2024 Правительство Grand Mobile. Все права защищены.</p>
+                    <p>© 2024 Правительство Grand Mobile. Крупнейшее правительство на сервере.</p>
                     <p>Это фанатский проект. Grand Mobile является зарегистрированной торговой маркой.</p>
                 </div>
             </div>
@@ -545,65 +624,152 @@
     </footer>
 
     <script>
-        // Данные о членах правительства
-        const governmentMembers = [
+        // Цитаты для правительства
+        const governmentQuotes = [
+            "Сила государства — в единстве его правительства.",
+            "Власть должна служить народу, а не наоборот.",
+            "Справедливость — основа любого процветающего общества.",
+
+"Лидер ведет за собой, а не толкает сзади.",
+            "Мудрое правление строится на опыте и знаниях.",
+            "Честность в политике — не роскошь, а необходимость.",
+            "Будущее строят те, кто думает о завтрашнем дне.",
+            "Единство цели рождает великие свершения.",
+            "Ответственность — главное качество лидера.",
+            "Диалог с народом — ключ к успешному правлению.",
+            "Реформы должны улучшать жизнь, а не усложнять её.",
+            "Традиции и инновации — две стороны одной медали.",
+            "Сильное правительство — защитник слабых.",
+            "Процветание нации начинается с порядка в управлении.",
+            "Доверие граждан — высшая награда для власти.",
+            "Стратегическое мышление отличает лидера от управленца.",
+            "Прозрачность решений укрепляет авторитет власти.",
+            "Гибкость в управлении — залог выживания в кризис.",
+            "Патриотизм — это любовь к стране, а не к власти.",
+            "Эффективность — лучший ответ критикам.",
+            "Компромисс там, где принципы не страдают.",
+            "История оценит нас по нашим делам, а не словам.",
+            "Смелость принимать непопулярные решения — удел лидеров.",
+            "Скромность во власти вызывает больше уважения.",
+            "Образование правителей — инвестиция в будущее страны.",
+            "Технологии должны служить людям, а не управлять ими.",
+            "Культура диалога — основа политической стабильности.",
+            "Ресурсы страны должны работать на её граждан.",
+            "Международное уважение начинается с порядка дома.",
+            "Преемственность власти обеспечивает стабильность.",
+            "Критика полезна, когда конструктивна.",
+            "Государство сильно, когда сильны его институты.",
+            "Равенство перед законом — принцип справедливого общества.",
+            "Инвестиции в людей — лучшие инвестиции государства.",
+            "Экология власти так же важна, как экология природы.",
+            "Историческая память защищает от ошибок прошлого.",
+            "Интеграция в мир не должна costить потери идентичности.",
+            "Социальная ответственность власти — не пустой звук.",
+            "Молодёжь в политике — свежая кровь для государства.",
+            "Женщины во власти привносят гармонию в управление.",
+            "Региональное развитие укрепляет целостность страны.",
+            "Коррупция — раковая опухоль государственности.",
+            "Открытость миру не означает потери суверенитета.",
+            "Цифровизация власти — путь к эффективности.",
+            "Гуманизм в политике — признак зрелого общества.",
+            "Сохранение наследия — долг перед будущими поколениями.",
+            "Инициатива снизу должна находить отклик наверху.",
+            "Стабильность — платформа для развития.",
+            "Профессионализм в управлении — требование времени."
+        ];
+
+        // Старший состав правительства (из ваших файлов)
+        const seniorMembers = [
             {
                 name: "Arzi_Sid",
                 position: "ГУБЕРНАТОР",
                 quote: "Сильное правительство - это не контроль, а создание возможностей для всех граждан.",
                 status: "",
-                photo: "arzi.jpg"
+                rank: "governor"
             },
             {
                 name: "Daniil_Pirogov",
                 position: "ЗАМЕСТИТЕЛЬ ГУБЕРНАТОРА",
                 quote: "Порядок и справедливость - основа процветающего государства.",
                 status: "",
-                photo: "daniil.jpg"
+                rank: "deputy"
             },
             {
                 name: "Artemka_Alexeev",
                 position: "ЗАМЕСТИТЕЛЬ ГУБЕРНАТОРА",
                 quote: "Инновации в управлении - залог развития нашего региона.",
                 status: "🟢",
-                photo: "artemka.jpg"
-            },
+                rank: "deputy"
+
+},
             {
                 name: "Antony_Bakin",
                 position: "ЗАМЕСТИТЕЛЬ ГУБЕРНАТОРА",
                 quote: "Эффективность власти измеряется благополучием граждан.",
                 status: "",
-                photo: "antony.jpg"
+                rank: "deputy"
             },
             {
                 name: "Erasil_Redford",
                 position: "ДЕПУТАТ",
                 quote: "Голос народа должен быть услышан в каждом решении.",
                 status: "",
-                photo: "erasil.jpg"
+                rank: "deputy"
             },
             {
                 name: "Roma_Chernov",
                 position: "ДЕПУТАТ",
                 quote: "Честность и прозрачность - принципы настоящего лидера.",
                 status: "",
-                photo: "roma.jpg"
+                rank: "deputy"
             },
             {
                 name: "Petr_Perviiy",
                 position: "АДВОКАТ",
                 quote: "Закон должен защищать каждого, независимо от статуса.",
                 status: "",
-                photo: "petr.jpg"
+                rank: "lawyer"
             }
         ];
 
+        // Генерация 49 членов правительства
+        const generateGovernmentMembers = () => {
+            const members = [...seniorMembers];
+            const positions = ["МИНИСТР", "СОВЕТНИК", "ПОМОЩНИК", "СПЕЦИАЛИСТ", "КООРДИНАТОР", "ЭКСПЕРТ"];
+            const firstNames = ["Alex", "Maxim", "Ivan", "Sergey", "Dmitry", "Andrey", "Vladimir", "Pavel", "Nikita", "Roman"];
+            const lastNames = ["Ivanov", "Petrov", "Sidorov", "Smirnov", "Kuznetsov", "Popov", "Volkov", "Sokolov", "Lebedev", "Kozlov"];
+            
+            // Добавляем еще 42 члена
+            for (let i = 8; i <= 49; i++) {
+                const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+                const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+                const position = positions[Math.floor(Math.random() * positions.length)];
+                const quote = governmentQuotes[i - 1] || governmentQuotes[Math.floor(Math.random() * governmentQuotes.length)];
+                
+                members.push({
+                    name: ${firstName}_${lastName},
+                    position: position,
+                    quote: quote,
+                    status: i <= 15 ? "🟢" : "", // Первые 15 онлайн
+                    rank: "member"
+                });
+            }
+            
+            return members;
+        };
+
+        const allMembers = generateGovernmentMembers();
+        let currentPage = 1;
+        const membersPerPage = 12;
+
         // Функция для создания карточки члена правительства
         function createMemberCard(member) {
+            const statusHtml = member.status ? <div class="member-status">${member.status}</div> : '';
+            
             return 
                 <div class="member-card">
                     <div class="member-header">
-                        <div class="member-status">${member.status}</div>
+                        ${statusHtml}
                         <div class="member-photo-placeholder">
                             <i class="fas fa-user-tie"></i>
                         </div>
@@ -619,23 +785,91 @@
             ;
         }
 
-// Загружаем членов правительства на страницу
-        document.addEventListener('DOMContentLoaded', function() {
-            const membersGrid = document.getElementById('membersGrid');
+        // Функция для отображения старшего состава
+        function displaySeniorMembers() {
+            const seniorContainer = document.querySelector('.senior-members');
+            if (!seniorContainer) return;
             
-            // Добавляем карточки членов
-            governmentMembers.forEach(member => {
+            let html = '<h3 style="text-align:center; color:var(--accent-gold); margin-bottom:30px;">СТАРШИЙ СОСТАВ ПРАВИТЕЛЬСТВА</h3>';
+            
+html += '<div class="members-grid" style="margin-bottom:50px;">';
+            
+            seniorMembers.forEach(member => {
+                html += createMemberCard(member);
+            });
+            
+            html += '</div>';
+            seniorContainer.innerHTML = html;
+        }
+
+        // Функция для отображения страницы
+        function displayPage(page) {
+            const startIndex = (page - 1) * membersPerPage;
+            const endIndex = startIndex + membersPerPage;
+            const pageMembers = allMembers.slice(startIndex, endIndex);
+            
+            const membersGrid = document.getElementById('membersGrid');
+            membersGrid.innerHTML = '';
+            
+            pageMembers.forEach(member => {
                 membersGrid.innerHTML += createMemberCard(member);
             });
+            
+            // Обновляем информацию о странице
+            document.getElementById('pageInfo').textContent = 
+                Страница ${page} из ${Math.ceil(allMembers.length / membersPerPage)};
+            
+            // Обновляем состояние кнопок
+            document.getElementById('prevPage').disabled = page === 1;
+            document.getElementById('nextPage').disabled = page === Math.ceil(allMembers.length / membersPerPage);
+            
+            // Анимация появления
+            setTimeout(() => {
+                document.querySelectorAll('.member-card').forEach(card => {
+                    card.classList.add('visible');
+                });
+            }, 100);
+        }
 
+        // Загружаем страницу
+        document.addEventListener('DOMContentLoaded', function() {
+            // Отображаем старший состав
+            displaySeniorMembers();
+            
+            // Отображаем первую страницу
+            displayPage(1);
+            
+            // Обработчики пагинации
+            document.getElementById('prevPage').addEventListener('click', function() {
+                if (currentPage > 1) {
+                    currentPage--;
+                    displayPage(currentPage);
+                    window.scrollTo({
+                        top: document.querySelector('.government-section').offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+            
+            document.getElementById('nextPage').addEventListener('click', function() {
+                if (currentPage < Math.ceil(allMembers.length / membersPerPage)) {
+                    currentPage++;
+                    displayPage(currentPage);
+                    window.scrollTo({
+                        top: document.querySelector('.government-section').offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+            
             // Кнопка "Играть"
             document.getElementById('playButton').addEventListener('click', function() {
                 if (confirm('Вы будете перенаправлены на официальный сайт Grand Mobile для игры на Сервере 20. Продолжить?')) {
                     window.open('https://grnd.game/?server=20', '_blank');
                 }
             });
-
-            // Анимация появления элементов при скролле
+            
+            // Анимация появления при скролле
             function checkVisibility() {
                 const cards = document.querySelectorAll('.member-card, .feature-card');
                 
@@ -648,55 +882,57 @@
                     }
                 });
             }
-
-            // Проверяем видимость при загрузке и скролле
+            
             window.addEventListener('load', checkVisibility);
             window.addEventListener('scroll', checkVisibility);
+
+checkVisibility();
             
-            // Инициализируем проверку
-            checkVisibility();
-
-            // Анимация для статистики
+            // Анимация статистики
             function animateStats() {
-                const stats = document.querySelectorAll('.stat-number');
-                const targetValues = [40, 7, 20];
+                const approvalElement = document.getElementById('approvalRate');
+                let current = 0;
+                const target = 69;
+                const increment = target / 50;
                 
-                stats.forEach((stat, index) => {
-                    let current = 0;
-                    const target = targetValues[index];
-                    const increment = target / 50;
-                    const timer = setInterval(() => {
-                        current += increment;
-                        if (current >= target) {
-                            current = target;
-                            clearInterval(timer);
-                        }
-                        stat.textContent = Math.floor(current) + (index === 0 ? '%' : '');
-                    }, 30);
-                });
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    approvalElement.textContent = Math.floor(current) + '%';
+                }, 30);
             }
-
-            // Запускаем анимацию статистики
-            setTimeout(animateStats, 500);
-
-            // Динамическое обновление одобрения (пример)
+            
+            setTimeout(animateStats, 800);
+            
+            // Динамическое изменение рейтинга
             function updateApproval() {
-                const approvalElement = document.querySelector('.stat-number');
+                const approvalElement = document.getElementById('approvalRate');
                 let currentApproval = parseInt(approvalElement.textContent);
                 
-                // Случайное изменение рейтинга (для демонстрации)
+                // Случайное изменение в пределах 65-73%
                 const change = Math.random() > 0.5 ? 1 : -1;
                 currentApproval += change;
                 
-                // Ограничиваем от 35% до 45%
-                if (currentApproval < 35) currentApproval = 35;
-                if (currentApproval > 45) currentApproval = 45;
+                // Ограничиваем
+                if (currentApproval < 65) currentApproval = 65;
+                if (currentApproval > 73) currentApproval = 73;
                 
                 approvalElement.textContent = currentApproval + '%';
+                
+                // Меняем цвет в зависимости от рейтинга
+                if (currentApproval >= 70) {
+                    approvalElement.style.color = '#4CAF50';
+                } else if (currentApproval >= 67) {
+                    approvalElement.style.color = '#FFC107';
+                } else {
+                    approvalElement.style.color = '#f44336';
+                }
             }
-
-            // Обновляем каждые 30 секунд
-            setInterval(updateApproval, 30000);
+            
+            setInterval(updateApproval, 15000);
         });
     </script>
 </body>

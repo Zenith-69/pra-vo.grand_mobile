@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Правительство Grand Mobile | Сервер 20</title>
+    <meta name="description" content="Официальное правительство Grand Mobile на Сервере 20. Присоединяйтесь к нашей команде!">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Базовые стили */
+        :root {
+            --primary-dark: #1a1a2e;
+            --primary-blue: #162447;
+            --accent-gold: #d4af37;
+            --accent-light: #e6e6e6;
+            --accent-red: #c70039;
+            --text-light: #f8f9fa;
+            --text-gray: #adb5bd;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --border-radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-blue) 100%);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Герой секция */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-overlay {
+            width: 100%;
+            padding: 80px 0;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--accent-gold), #fff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-align: center;
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        .server-highlight {
+            color: var(--accent-gold);
+            font-weight: 700;
+            background: rgba(212, 175, 55, 0.1);
+            padding: 2px 10px;
+            border-radius: 6px;
+            border: 1px solid var(--accent-gold);
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            text-align: center;
+            color: var(--text-gray);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+/* Секции */
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--accent-gold);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+        }
+
+        .government-section {
+            padding: 100px 0;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Карточки членов */
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .member-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .member-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .member-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow);
+            border-color: var(--accent-gold);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .member-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .member-status {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .member-photo-placeholder {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            background: linear-gradient(45deg, var(--primary-blue), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            border: 3px solid var(--accent-gold);
+        }
+
+        .member-name {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--text-light);
+        }
+
+        .member-position {
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .member-quote {
+            position: relative;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            font-style: italic;
+        }
+
+        .quote-icon {
+            color: var(--accent-gold);
+            opacity: 0.5;
+            font-size: 1rem;
+        }
+
+        .quote-icon:first-child {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .quote-icon:last-child {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+
+        /* Особенности */
+        .features-section {
+            padding: 100px 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            transition: transform 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .feature-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+        }
+
+.feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .feature-card p {
+            color: var(--text-gray);
+        }
+
+        /* Кнопка */
+        .cta-section {
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+                        url('https://images.unsplash.com/photo-1552820728-8b83bb6b773f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .cta-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--accent-gold);
+        }
+
+        .cta-description {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: var(--text-gray);
+        }
+
+        .play-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: linear-gradient(45deg, var(--accent-red), #ff416c);
+            color: white;
+            padding: 20px 50px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        .play-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(199, 0, 57, 0.4);
+            border-color: white;
+        }
+
+        .server-info {
+            margin-top: 20px;
+            color: var(--text-gray);
+            font-size: 1rem;
+        }
+
+        /* Футер */
+        .footer {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 40px 0;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-logo h3 {
+            color: var(--accent-gold);
+            margin-bottom: 10px;
+        }
+
+        .footer-links p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Анимации */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .stats {
+                gap: 30px;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .members-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            .cta-title {
+                font-size: 2rem;
+            }
+            
+            .play-button {
+                padding: 15px 30px;
+                font-size: 1.1rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+</style>
+</head>
+<body>
+    <!-- Герой секция -->
+    <section class="hero">
+        <div class="hero-overlay">
+            <div class="container">
+                <h1 class="hero-title">ПРАВИТЕЛЬСТВО GRAND MOBILE</h1>
+                <p class="hero-subtitle">Стройте будущее вместе с нами на <span class="server-highlight">Сервере 20</span></p>
+                <p class="hero-description">
+                    Мы создаем сильное, справедливое и процветающее государство, 
+                    где каждый игрок может реализовать свой потенциал. Присоединяйтесь 
+                    к команде лидеров, которые меняют мир Grand Mobile к лучшему.
+                </p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number">40%</span>
+                        <span class="stat-label">Одобрение граждан</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">7</span>
+                        <span class="stat-label">Членов правительства</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">20</span>
+                        <span class="stat-label">Сервер успеха</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Правительство -->
+    <section class="government-section">
+        <div class="container">
+            <h2 class="section-title">НАША КОМАНДА</h2>
+            <p class="section-subtitle">Лидеры, которые ведут наш регион к процветанию</p>
+            
+            <div class="members-grid" id="membersGrid">
+                <!-- Данные загружаются через JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Реклама правительства -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title">ПОЧЕМУ НАШЕ ПРАВИТЕЛЬСТВО?</h2>
+            <div class="features-grid" id="featuresGrid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Безопасность и Порядок</h3>
+                    <p>Мы гарантируем защиту прав каждого гражданина и поддерживаем законность на всех территориях.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Экономический Рост</h3>
+                    <p>Стимулируем развитие бизнеса, создаем рабочие места и поддерживаем предпринимательство.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Сообщество и Поддержка</h3>
+                    <p>Активное взаимодействие с гражданами, прозрачность решений и быстрое решение проблем.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>Эксклюзивные Возможности</h3>
+                    <p>Члены нашего правительства получают доступ к уникальным ивентам, ресурсам и привилегиям.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Призыв к действию -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-title">ГОТОВЫ СТАТЬ ЧАСТЬЮ ИСТОРИИ?</h2>
+            <p class="cta-description">
+                Присоединяйтесь к самому прогрессивному правительству на Сервере 20.
+
+Вместе мы построим государство, которое станет примером для всего Grand Mobile!
+            </p>
+            <button id="playButton" class="play-button">
+                <i class="fas fa-gamepad"></i>
+                ИГРАТЬ С НАМИ НА СЕРВЕРЕ 20
+            </button>
+            <p class="server-info">
+                <i class="fas fa-server"></i>
+                Автоматическое подключение к <strong>Серверу 20</strong> через официальный клиент
+            </p>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>GRAND MOBILE GOVERNMENT</h3>
+                    <p>Сервер 20 | Официальное правительство</p>
+                </div>
+                <div class="footer-links">
+                    <p>© 2024 Правительство Grand Mobile. Все права защищены.</p>
+                    <p>Это фанатский проект. Grand Mobile является зарегистрированной торговой маркой.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Данные о членах правительства
+        const governmentMembers = [
+            {
+                name: "Arzi_Sid",
+                position: "ГУБЕРНАТОР",
+                quote: "Сильное правительство - это не контроль, а создание возможностей для всех граждан.",
+                status: "",
+                photo: "arzi.jpg"
+            },
+            {
+                name: "Daniil_Pirogov",
+                position: "ЗАМЕСТИТЕЛЬ ГУБЕРНАТОРА",
+                quote: "Порядок и справедливость - основа процветающего государства.",
+                status: "",
+                photo: "daniil.jpg"
+            },
+            {
+                name: "Artemka_Alexeev",
+                position: "ЗАМЕСТИТЕЛЬ ГУБЕРНАТОРА",
+                quote: "Инновации в управлении - залог развития нашего региона.",
+                status: "🟢",
+                photo: "artemka.jpg"
+            },
+            {
+                name: "Antony_Bakin",
+                position: "ЗАМЕСТИТЕЛЬ ГУБЕРНАТОРА",
+                quote: "Эффективность власти измеряется благополучием граждан.",
+                status: "",
+                photo: "antony.jpg"
+            },
+            {
+                name: "Erasil_Redford",
+                position: "ДЕПУТАТ",
+                quote: "Голос народа должен быть услышан в каждом решении.",
+                status: "",
+                photo: "erasil.jpg"
+            },
+            {
+                name: "Roma_Chernov",
+                position: "ДЕПУТАТ",
+                quote: "Честность и прозрачность - принципы настоящего лидера.",
+                status: "",
+                photo: "roma.jpg"
+            },
+            {
+                name: "Petr_Perviiy",
+                position: "АДВОКАТ",
+                quote: "Закон должен защищать каждого, независимо от статуса.",
+                status: "",
+                photo: "petr.jpg"
+            }
+        ];
+
+        // Функция для создания карточки члена правительства
+        function createMemberCard(member) {
+            return 
+                <div class="member-card">
+                    <div class="member-header">
+                        <div class="member-status">${member.status}</div>
+                        <div class="member-photo-placeholder">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h3 class="member-name">${member.name}</h3>
+                        <p class="member-position">${member.position}</p>
+                    </div>
+                    <div class="member-quote">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p>"${member.quote}"</p>
+                        <i class="fas fa-quote-right quote-icon"></i>
+                    </div>
+                </div>
+            ;
+        }
+
+// Загружаем членов правительства на страницу
+        document.addEventListener('DOMContentLoaded', function() {
+            const membersGrid = document.getElementById('membersGrid');
+            
+            // Добавляем карточки членов
+            governmentMembers.forEach(member => {
+                membersGrid.innerHTML += createMemberCard(member);
+            });
+
+            // Кнопка "Играть"
+            document.getElementById('playButton').addEventListener('click', function() {
+                if (confirm('Вы будете перенаправлены на официальный сайт Grand Mobile для игры на Сервере 20. Продолжить?')) {
+                    window.open('https://grnd.game/?server=20', '_blank');
+                }
+            });
+
+            // Анимация появления элементов при скролле
+            function checkVisibility() {
+                const cards = document.querySelectorAll('.member-card, .feature-card');
+                
+                cards.forEach(card => {
+                    const rect = card.getBoundingClientRect();
+                    const windowHeight = window.innerHeight;
+                    
+                    if (rect.top <= windowHeight * 0.8) {
+                        card.classList.add('visible');
+                    }
+                });
+            }
+
+            // Проверяем видимость при загрузке и скролле
+            window.addEventListener('load', checkVisibility);
+            window.addEventListener('scroll', checkVisibility);
+            
+            // Инициализируем проверку
+            checkVisibility();
+
+            // Анимация для статистики
+            function animateStats() {
+                const stats = document.querySelectorAll('.stat-number');
+                const targetValues = [40, 7, 20];
+                
+                stats.forEach((stat, index) => {
+                    let current = 0;
+                    const target = targetValues[index];
+                    const increment = target / 50;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            current = target;
+                            clearInterval(timer);
+                        }
+                        stat.textContent = Math.floor(current) + (index === 0 ? '%' : '');
+                    }, 30);
+                });
+            }
+
+            // Запускаем анимацию статистики
+            setTimeout(animateStats, 500);
+
+            // Динамическое обновление одобрения (пример)
+            function updateApproval() {
+                const approvalElement = document.querySelector('.stat-number');
+                let currentApproval = parseInt(approvalElement.textContent);
+                
+                // Случайное изменение рейтинга (для демонстрации)
+                const change = Math.random() > 0.5 ? 1 : -1;
+                currentApproval += change;
+                
+                // Ограничиваем от 35% до 45%
+                if (currentApproval < 35) currentApproval = 35;
+                if (currentApproval > 45) currentApproval = 45;
+                
+                approvalElement.textContent = currentApproval + '%';
+            }
+
+            // Обновляем каждые 30 секунд
+            setInterval(updateApproval, 30000);
+        });
+    </script>
+</body>
+</html>
